@@ -1,0 +1,18 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false
+    },
+    "cSpell.words": [
+        "Ccircle",
+        "Cpath",
+        "Csvg",
+        "linebreak",
+        "todoapp",
+        "Todos",
+        "toogle"
+    ]
+}
