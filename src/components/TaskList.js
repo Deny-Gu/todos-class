@@ -8,7 +8,7 @@ export default class TaskList extends Component {
   render() {
     return (
       <ul className="todo-list">
-        {this.props.filterTasks.map((task) => {
+        {this.props.tasks.map((task) => {
           return (
             <Task
               key={task.id}
@@ -21,6 +21,8 @@ export default class TaskList extends Component {
               editingTask={this.props.editingTask}
               toogleCompleted={this.props.toogleCompleted}
               toogleEditing={this.props.toogleEditing}
+              min={task.min}
+              sec={task.sec}
             />
           );
         })}

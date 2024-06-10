@@ -1,14 +1,14 @@
 function TaskFilter(props) {
-  const handleClick = (e) => {
-    props.editingFilter(e.target.innerHTML);
-  };
+  // const handleClick = (e) => {
+  //   props.editingFilter(e.target.innerHTML);
+  // };
 
   return (
     <ul className="filters">
       <li>
         <button
           className={props.filter === 'All' ? 'selected' : null}
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => props.toggleFilter(e.target.innerHTML)}
         >
           All
         </button>
@@ -16,7 +16,7 @@ function TaskFilter(props) {
       <li>
         <button
           className={props.filter === 'Active' ? 'selected' : null}
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => props.toggleFilter(e.target.innerHTML)}
         >
           Active
         </button>
@@ -24,7 +24,7 @@ function TaskFilter(props) {
       <li>
         <button
           className={props.filter === 'Completed' ? 'selected' : null}
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => props.toggleFilter(e.target.innerHTML)}
         >
           Completed
         </button>

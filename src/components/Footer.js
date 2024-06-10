@@ -6,6 +6,7 @@ function Footer(props) {
       <span className="todo-count">{props.count} items left</span>
       <TaskFilter
         filter={props.filter}
+        toggleFilter={props.toggleFilter}
         editingFilter={props.editingFilter}
         editingFilterTasks={props.editingFilterTasks}
       />
