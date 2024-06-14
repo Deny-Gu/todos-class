@@ -48,8 +48,13 @@ export default class Task extends Component {
   }
 
   startTimer = () => {
-    this.setState({ runTimer: true });
-    this.timer = setInterval(this.countDown, 1000);
+    if (this.state.runTimer) {
+      return;
+    }
+    if (!this.props.completed) {
+      this.setState({ runTimer: true });
+      this.timer = setInterval(this.countDown, 1000);
+    }
   };
 
   countDown = () => {
@@ -69,6 +74,9 @@ export default class Task extends Component {
   taskCompleted() {
     this.props.toogleCompleted(this.props.id);
     clearInterval(this.timer);
+    if (this.props.completed) {
+      this.setState({ runTimer: false });
+    }
   }
 
   render() {
