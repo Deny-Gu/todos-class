@@ -10,6 +10,7 @@ export default class Todo extends Component {
     tasks: [],
     id: 0,
     filter: 'All',
+    countItem: 0,
   };
 
   addTask = (label, min, sec) => {
@@ -27,7 +28,12 @@ export default class Todo extends Component {
         },
       ],
     });
-    this.setState({ id: this.state.id + 1 });
+    this.setState((state) => {
+      return {
+        id: state.id + 1,
+        countItem: state.countItem + 1,
+      };
+    });
   };
 
   removeTask = (id) => {
@@ -35,9 +41,17 @@ export default class Todo extends Component {
     this.setState({
       tasks: remove,
     });
+    this.setState((state) => {
+      return {
+        countItem: state.countItem - 1,
+      };
+    });
   };
 
   editingTask = (id, newLabel) => {
+    if (!newLabel) {
+      return;
+    }
     let editing = this.state.tasks.map((task) =>
       task.id === id ? { ...task, label: newLabel, editing: false } : task
     );
@@ -73,6 +87,7 @@ export default class Todo extends Component {
 
   toggleFilter = (target) => {
     let tasks = document.querySelectorAll('.todo-list li');
+    let count = 0;
     if (target === 'Completed') {
       this.setState({
         filter: target,
@@ -82,6 +97,7 @@ export default class Todo extends Component {
           li.style.display = 'none';
         } else {
           li.style.display = 'list-item';
+          count++;
         }
       });
     }
@@ -94,6 +110,7 @@ export default class Todo extends Component {
           li.style.display = 'none';
         } else {
           li.style.display = 'list-item';
+          count++;
         }
       });
     }
@@ -103,8 +120,12 @@ export default class Todo extends Component {
       });
       tasks.forEach((li) => {
         li.style.display = 'list-item';
+        count++;
       });
     }
+    this.setState({
+      countItem: count,
+    });
   };
 
   render() {
@@ -125,7 +146,7 @@ export default class Todo extends Component {
             filterTasks={this.state.filterTasks}
           />
           <Footer
-            count={0}
+            count={this.state.countItem}
             removeCompletedTasks={this.removeCompletedTasks}
             filter={this.state.filter}
             toggleFilter={this.toggleFilter}

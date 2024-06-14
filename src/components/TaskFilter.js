@@ -1,8 +1,4 @@
 function TaskFilter(props) {
-  // const handleClick = (e) => {
-  //   props.editingFilter(e.target.innerHTML);
-  // };
-
   return (
     <ul className="filters">
       <li>
